@@ -5,7 +5,7 @@ This is an app for learning to set up and test Gulp.
 ## Requirements
 
 - [nodeJs (version >= v18.13.0)](https://nodejs.org/uk/)
-- [git (verfion) >=2.38.1](https://git-scm.com/downloads)
+- [git (version) >=2.38.1](https://git-scm.com/downloads)
 
 ## Scripts
 
@@ -20,12 +20,15 @@ This is an app for learning to set up and test Gulp.
 4. Clone the project to your computer from the (source)[https://github.com/vitaliimalynka/html5_css3_advanced_gulp.git]. For this: 
     - start terminal (cmd, PowerShell, Bash or etc.)
     - choose some folder for this project
-    - run command `git clone https://git.lanet.ua/external/webinair/link_client.git`
+    - run command `git clone https://github.com/vitaliimalynka/html5_css3_advanced_gulp.git`
 5. Go into folder with project by command `cd html5_css3_advanced_gulp`.
 6. Install all required dependencies from package.json. For this, run command `npm i` or `npm install` on the terminal.
-6. You can start project by scripts on the 'package.json' file. Run on the terminal next command:
+
+## Use
+
+1. You can start project by scripts on the 'package.json' file. Run on the terminal next command:
     - for local development: `npm start`;
-    - for build project for production: `npm run build`. This command create or udpate `dist` folder. In this folder you can find everithing for start project on the server
+    - for build project for production: `npm run build`. This command create or udpate `dist` folder. In this folder you can find everithing for start project on the web server(not include)
 
 ## Project structure
 ```
