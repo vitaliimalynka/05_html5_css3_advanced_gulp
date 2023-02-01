@@ -1,0 +1,22 @@
+{
+  "name": "html-css-advenced",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  
+  "devDependencies": {
+    "browser-sync": "^2.27.11",
+    "del": "^7.0.0",
+    "gulp": "^4.0.2",
+    "gulp-htmlmin": "^5.0.1",
+    "gulp-sass": "^5.1.0",
+    "sass": "^1.58.0"
+  }
+}
