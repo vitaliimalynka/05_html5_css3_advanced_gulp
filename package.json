@@ -6,7 +6,7 @@
   "type": "module",
   "scripts": {
     "start": "gulp watch",
-    "build": "gulp build"
+    "build": "gulp build --prod"
   },
   "keywords": [],
   "author": "",
@@ -16,6 +16,7 @@
     "del": "^7.0.0",
     "gulp": "^4.0.2",
     "gulp-htmlmin": "^5.0.1",
+    "gulp-if": "^3.0.0",
     "gulp-sass": "^5.1.0",
     "gulp-sourcemaps": "^3.0.0",
     "gulp-terser": "^2.1.0",

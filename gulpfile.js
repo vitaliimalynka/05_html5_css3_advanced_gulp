@@ -6,46 +6,49 @@ import { deleteAsync } from 'del'
 import browserSync from 'browser-sync'
 import terser from 'gulp-terser'
 import sourcemaps from 'gulp-sourcemaps'
-
+import gulpIf from 'gulp-if'
 
 const sass = gulpSass(dartSass)
+const isProd = process.argv.includes('--prod')
+const distName = isProd ? 'dist' : 'dev'
+
 
 function html() {
     return gulp.src('src/**/*.html')
         .pipe(htmlmin({
-            collapseWhitespace: true,
-            minifyCSS: true
+            collapseWhitespace: isProd,
+            minifyCSS: isProd
         }))
-        .pipe(gulp.dest('dist'))
+        .pipe(gulp.dest(distName))
 }
 
 function scss() {
     return gulp.src('src/scss/**/*.scss')
-        .pipe(sourcemaps.init())
-        .pipe(sass({outputStyle: 'compressed'}))
-        .pipe(sourcemaps.write('./'))
-        .pipe(gulp.dest('dist/css'))
+        .pipe(gulpIf(!isProd, sourcemaps.init()))
+        .pipe(sass(isProd ? {outputStyle: 'compressed'} : {}))
+        .pipe(gulpIf(!isProd,sourcemaps.write('./')))
+        .pipe(gulp.dest(`${distName}/css`))
 }
 
 function clear() {
-    return deleteAsync('dist')
+    return deleteAsync(distName)
 }
 
 function copyAssets() {
     return gulp.src('src/assets/**/*.*')
-        .pipe(gulp.dest('dist/assets'))
+        .pipe(gulp.dest(`${distName}/assets`))
 }
 
 function js() {
     return gulp.src('src/js/**/*.js')
-        .pipe(sourcemaps.init())
-        .pipe(terser())
-        .pipe(sourcemaps.write('./'))
-        .pipe(gulp.dest('dist/js'))
+        .pipe(gulpIf(!isProd, sourcemaps.init()))
+        .pipe(gulpIf(isProd, terser()))
+        .pipe(gulpIf(!isProd,sourcemaps.write('./')))
+        .pipe(gulp.dest(`${distName}/js`))
 }
 
 function serve() {
-    browserSync.init({ server: 'dist' })
+    browserSync.init({ server: distName })
 
     gulp.watch('src/**/*.html', html).on('change', browserSync.reload)
     gulp.watch('src/scss/**/*.scss', scss).on('change', browserSync.reload)
